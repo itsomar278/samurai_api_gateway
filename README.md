@@ -142,5 +142,3 @@ flask run
 - [samurai_auth_service](https://github.com/itsomar278/samurai_auth_service)
 - [samurai_LLM_interaction](https://github.com/itsomar278/samurai_LLM_interaction)
 
-## License
-MIT License - see LICENSE file

@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 4. Start the service:
 ```bash
-python app.py
+flask run 
 ```
 
 ## API Endpoints

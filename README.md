@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 4. Start the service:
 ```bash
-flask run 
+flask run
 ```
 
 ## API Endpoints
@@ -119,14 +119,28 @@ flask run
   ```
 
 ## Service Architecture
-- Flask-based REST API
-- JWT authentication middleware
-- RabbitMQ client for async processing
+- Flask-based REST API with centralized authentication middleware
+- JWT token validation for all non-auth endpoints
 - Service discovery and routing
-- Error handling and validation
+- Robust error handling and request validation
+
+### Authentication Flow
+1. Every request (except /login and /signup) passes through authentication middleware
+2. JWT tokens validated against Auth Service
+3. User identity extracted and passed to downstream services
+4. Failed authentication returns 401 Unauthorized
+
+### Message Queue Integration
+1. RabbitMQ client manages video processing requests
+2. Generates unique request IDs for tracking
+3. Messages persisted in durable queues
+4. Automatic reconnection handling
+5. Message delivery confirmation
 
 ## Related Services
 - [samurai_transclation_service](https://github.com/itsomar278/samurai_video_service)
 - [samurai_auth_service](https://github.com/itsomar278/samurai_auth_service)
-- [samurai_LLM_interaction_service](https://github.com/itsomar278/samurai_LLM_interaction)
+- [samurai_LLM_interaction](https://github.com/itsomar278/samurai_LLM_interaction)
 
+## License
+MIT License - see LICENSE file
